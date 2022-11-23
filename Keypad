@@ -1,0 +1,126 @@
+#define R1_Port GPIOA
+#define R1_Pin GPIO_PIN_1
+
+#define R2_Port GPIOC
+#define R2_Pin GPIO_PIN_5
+
+#define R3_Port GPIOA
+#define R3_Pin GPIO_PIN_5
+
+#define R4_Port GPIOA
+#define R4_Pin GPIO_PIN_3
+
+#define C1_Port GPIOA
+#define C1_Pin GPIO_PIN_2
+
+#define C2_Port GPIOA
+#define C2_Pin GPIO_PIN_0
+
+#define C3_Port GPIOA
+#define C3_Pin GPIO_PIN_4
+
+//Defniition between User code begin PD
+
+char read_keypad (void)
+
+{
+	/* Make ROW 1 LOW and all other ROWs HIGH */
+	HAL_GPIO_WritePin (R1_Port, R1_Pin, GPIO_PIN_RESET);  //Pull the R1 low
+	HAL_GPIO_WritePin (R2_Port, R2_Pin, GPIO_PIN_SET);  // Pull the R2 High
+	HAL_GPIO_WritePin (R3_Port, R3_Pin, GPIO_PIN_SET);  // Pull the R3 High
+	HAL_GPIO_WritePin (R4_Port, R4_Pin, GPIO_PIN_SET);  // Pull the R4 High
+
+	if (!(HAL_GPIO_ReadPin (C1_Port, C1_Pin)))   // if the Col 1 is low
+	{
+		while (!(HAL_GPIO_ReadPin (C1_Port, C1_Pin)));   // wait till the button is pressed
+		return '1';
+	}
+
+	if (!(HAL_GPIO_ReadPin (C2_Port, C2_Pin)))   // if the Col 2 is low
+	{
+		while (!(HAL_GPIO_ReadPin (C2_Port, C2_Pin)));   // wait till the button is pressed
+		return '2';
+	}
+
+	if (!(HAL_GPIO_ReadPin (C3_Port, C3_Pin)))   // if the Col 3 is low
+	{
+		while (!(HAL_GPIO_ReadPin (C3_Port, C3_Pin)));   // wait till the button is pressed
+		return '3';
+	}
+
+	/* Make ROW 1 LOW and all other ROWs HIGH */
+		HAL_GPIO_WritePin (R1_Port, R1_Pin, GPIO_PIN_SET);  //Pull the R1 low
+		HAL_GPIO_WritePin (R2_Port, R2_Pin, GPIO_PIN_RESET);  // Pull the R2 High
+		HAL_GPIO_WritePin (R3_Port, R3_Pin, GPIO_PIN_SET);  // Pull the R3 High
+		HAL_GPIO_WritePin (R4_Port, R4_Pin, GPIO_PIN_SET);  // Pull the R4 High
+
+		if (!(HAL_GPIO_ReadPin (C1_Port, C1_Pin)))   // if the Col 1 is low
+		{
+			while (!(HAL_GPIO_ReadPin (C1_Port, C1_Pin)));   // wait till the button is pressed
+			return '4';
+		}
+
+		if (!(HAL_GPIO_ReadPin (C2_Port, C2_Pin)))   // if the Col 2 is low
+		{
+			while (!(HAL_GPIO_ReadPin (C2_Port, C2_Pin)));   // wait till the button is pressed
+			return '5';
+		}
+
+		if (!(HAL_GPIO_ReadPin (C3_Port, C3_Pin)))   // if the Col 3 is low
+		{
+			while (!(HAL_GPIO_ReadPin (C3_Port, C3_Pin)));   // wait till the button is pressed
+			return '6';
+		}
+
+
+		/* Make ROW 1 LOW and all other ROWs HIGH */
+			HAL_GPIO_WritePin (R1_Port, R1_Pin, GPIO_PIN_SET);  //Pull the R1 low
+			HAL_GPIO_WritePin (R2_Port, R2_Pin, GPIO_PIN_SET);  // Pull the R2 High
+			HAL_GPIO_WritePin (R3_Port, R3_Pin, GPIO_PIN_RESET);  // Pull the R3 High
+			HAL_GPIO_WritePin (R4_Port, R4_Pin, GPIO_PIN_SET);  // Pull the R4 High
+
+			if (!(HAL_GPIO_ReadPin (C1_Port, C1_Pin)))   // if the Col 1 is low
+			{
+				while (!(HAL_GPIO_ReadPin (C1_Port, C1_Pin)));   // wait till the button is pressed
+				return '7';
+			}
+
+			if (!(HAL_GPIO_ReadPin (C2_Port, C2_Pin)))   // if the Col 2 is low
+			{
+				while (!(HAL_GPIO_ReadPin (C2_Port, C2_Pin)));   // wait till the button is pressed
+				return '8';
+			}
+
+			if (!(HAL_GPIO_ReadPin (C3_Port, C3_Pin)))   // if the Col 3 is low
+			{
+				while (!(HAL_GPIO_ReadPin (C3_Port, C3_Pin)));   // wait till the button is pressed
+				return '9';
+			}
+
+
+			/* Make ROW 1 LOW and all other ROWs HIGH */
+				HAL_GPIO_WritePin (R1_Port, R1_Pin, GPIO_PIN_SET);  //Pull the R1 low
+				HAL_GPIO_WritePin (R2_Port, R2_Pin, GPIO_PIN_SET);  // Pull the R2 High
+				HAL_GPIO_WritePin (R3_Port, R3_Pin, GPIO_PIN_SET);  // Pull the R3 High
+				HAL_GPIO_WritePin (R4_Port, R4_Pin, GPIO_PIN_RESET);  // Pull the R4 High
+
+				if (!(HAL_GPIO_ReadPin (C1_Port, C1_Pin)))   // if the Col 1 is low
+				{
+					while (!(HAL_GPIO_ReadPin (C1_Port, C1_Pin)));   // wait till the button is pressed
+					return '*';
+				}
+
+				if (!(HAL_GPIO_ReadPin (C2_Port, C2_Pin)))   // if the Col 2 is low
+				{
+					while (!(HAL_GPIO_ReadPin (C2_Port, C2_Pin)));   // wait till the button is pressed
+					return '0';
+				}
+
+				if (!(HAL_GPIO_ReadPin (C3_Port, C3_Pin)))   // if the Col 3 is low
+				{
+					while (!(HAL_GPIO_ReadPin (C3_Port, C3_Pin)));   // wait till the button is pressed
+					return '#';
+				}
+
+
+}
